@@ -1,4 +1,5 @@
-# [Tic-Tac-Toe Checker](https://www.codewars.com/kata/525caa5c1bf619d28c000335) - by [eugene-bulkin](https://www.codewars.com/users/eugene-bulkin)
+# [Tic-Tac-Toe Checker](https://www.codewars.com/kata/525caa5c1bf619d28c000335)
+by [eugene-bulkin](https://www.codewars.com/users/eugene-bulkin)
 ## Description
 If we were to set up a Tic-Tac-Toe game, we would want to know whether the board's current state is solved, wouldn't we? Our goal is to create a function that will check that for us!
 
@@ -26,7 +27,8 @@ def is_solved(board):
 ###
 Tags: `Algorithms` `Arrays` `Data Types`
 <br>
-# [The Hashtag Generator](https://www.codewars.com/kata/52449b062fb80683ec000024) - by [AKJ.IO](https://www.codewars.com/users/AKJ.IO)
+# [The Hashtag Generator](https://www.codewars.com/kata/52449b062fb80683ec000024)
+by [AKJ.IO](https://www.codewars.com/users/AKJ.IO)
 ## Description
 The marketing team is spending way too much time typing in hashtags.   
 Let's help them with our own Hashtag Generator!
