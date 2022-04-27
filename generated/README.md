@@ -17,8 +17,8 @@ Click [here](https://www.codewars.com/users/dvnt) to check out my profile
 - Kyu 3 count: 0
 - Kyu 4 count: 0
 - Kyu 5 count: 2
-    - [Tic-Tac-Toe Checker](generated_examples.md#tic-tac-toe-checker)
-    - [The Hashtag Generator](generated_examples.md#the-hashtag-generator)
+    - [Tic-Tac-Toe Checker](example_challenges.md#tic-tac-toe-checker)
+    - [The Hashtag Generator](example_challenges.md#the-hashtag-generator)
 - Kyu 6 count: 0
 - Kyu 7 count: 0
 - Kyu 8 count: 0
