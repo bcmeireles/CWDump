@@ -76,9 +76,9 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
       f.write(f"# [{chalName}]({chalURL})\nby [{creator}](https://www.codewars.com/users/{creator})\n## Description\n{desc}\n## Solution:\n{solution}\n###\nTags: {tags}\n<br>\n")
     with open(f"temp/{lang}/{rank}.txt", "a") as f:
       if os.stat(f"temp/{lang}/{rank}.txt").st_size == 0:
-        f.write(convertName(chalName))
+        f.write(chalName)
       else:
-        f.write("\n" + convertName(chalName))
+        f.write("\n" + chalName)
   
 if __name__ == "__main__":
   main()
