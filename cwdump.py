@@ -2,6 +2,8 @@ import requests
 import os
 from selenium import webdriver
 import string
+import time
+import shutil
 
 def convertName(s):
   s = s.translate(str.maketrans('', '', string.punctuation))
@@ -9,10 +11,14 @@ def convertName(s):
   return s.lower()
 
 def main():
-  if not os.path.exists('generated'):
-    os.makedirs('generated')
+  if os.path.exists('generated'):
+    shutil.rmtree("generated", ignore_errors=True)
+    
+  os.makedirs('generated')
+  
+  drvierPath = "/usr/bin/geckodriver"
+  driver = webdriver.Firefox(executable_path=drvierPath)
 
-  driver = webdriver.Firefox(executable_path='/usr/bin/geckodriver')
   driver.get("https://www.codewars.com/users/sign_in")
 
   input("Please login on the browser and press enter to continue...")
@@ -41,10 +47,29 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
 ![](https://www.codewars.com/users/{username}/badges/large)
 
 ## Stats
-### Total Kata Completed: {totalCompleted}""")
+### Total Kata Completed: {totalCompleted}
+
+<br>
+
+""")
 
 
   index = 0
+
+  # https://stackoverflow.com/a/27760083
+  SCROLL_PAUSE_TIME = 0.5
+  last_height = driver.execute_script("return document.body.scrollHeight")
+
+  while True:
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    
+    time.sleep(SCROLL_PAUSE_TIME)
+    
+    new_height = driver.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+      break
+    last_height = new_height
+
   while index < totalCompleted:
     index += 1
     base = f"/html/body/div[1]/div[1]/main/div[5]/div/div/div[2]/div[{index}]"
@@ -65,7 +90,6 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
     tags += "`"
     tags = "`" + tags
 
-
     lang = driver.find_element_by_xpath(f"{base}/h6").text.lower()[:-1]
     code = driver.find_element_by_xpath(f"{base}/div[2]/pre/code").text
 
@@ -79,6 +103,25 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
         f.write(chalName)
       else:
         f.write("\n" + chalName)
+
+  for lang in langs:
+    r = open("generated/README.md", "a")
+    r.write(f"## {lang.capitalize()}\n")
+    for i in range(1, 11):
+      if os.path.exists(f"temp/{lang}/{i} kyu.txt"):
+        with open(f"temp/{lang}/{i} kyu.txt", "r") as f:
+          lines = f.readlines()
+        count = len(lines)
+        r.write(f"- Kyu {i} count: {count}\n")
+        for line in lines:
+          r.write(f"\t- [{line}]({lang}/{i}%20kyu.md#{convertName(line)})\n")
+      else:
+        r.write(f"- Kyu {i} count: 0\n")
+
+    r.write("\nGenerated using [dvntx's CWDump](https://github.com/dvntx/CWDump)")
+    r.close()
+
+  shutil.rmtree("temp", ignore_errors=True)
   
 if __name__ == "__main__":
   main()
