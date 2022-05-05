@@ -16,8 +16,8 @@ def main():
     
   os.makedirs('generated')
   
-  drvierPath = "/usr/bin/geckodriver"
-  driver = webdriver.Firefox(executable_path=drvierPath)
+  driverPath = "/usr/bin/geckodriver"
+  driver = webdriver.Firefox(executable_path=driverPath)
 
   driver.get("https://www.codewars.com/users/sign_in")
 
@@ -114,7 +114,7 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
         count = len(lines)
         r.write(f"- Kyu {i} count: {count}\n")
         for line in lines:
-          r.write(f"\t- [{line}]({lang}/{i}%20kyu.md#{convertName(line)})\n")
+          r.write(f"\t- [{line}]({lang.capitalize()}/{i}%20kyu.md#{convertName(line)})\n")
       else:
         r.write(f"- Kyu {i} count: 0\n")
 
