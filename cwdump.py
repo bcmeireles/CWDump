@@ -118,7 +118,7 @@ Click [here](https://www.codewars.com/users/{username}) to check out my profile
       else:
         r.write(f"- Kyu {i} count: 0\n")
 
-    r.write("\nGenerated using [dvntx's CWDump](https://github.com/dvntx/CWDump)")
+    r.write("\nGenerated using [dv-nt's CWDump](https://github.com/dv-nt/CWDump)")
     r.close()
 
   shutil.rmtree("temp", ignore_errors=True)
